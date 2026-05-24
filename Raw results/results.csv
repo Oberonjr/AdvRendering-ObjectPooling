@@ -1,0 +1,91 @@
+RunID,RunDateTime,InstantiationType,Strategy,ObjectCount,Repetition,InstantiationTime,GCAllocBytes
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,1,181,552960
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,1,273,552960
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,1,220,3932160
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,2,180,0
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,2,286,0
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,2,220,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,3,190,0
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,3,290,0
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,3,218,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,4,182,0
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,4,299,0
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,4,226,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,5,204,0
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,5,296,0
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,5,221,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,6,200,0
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,6,296,0
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,6,220,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,7,201,0
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,7,296,0
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,7,225,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,8,188,536576
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,8,300,532480
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,8,222,0
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,9,191,1925120
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,9,296,1921024
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,9,238,4096
+1,2026-05-24 20:39:15,WALL,Simple Instantiation Strategy,20000,10,222,1925120
+1,2026-05-24 20:39:15,WALL,Custom Pooling Instantiation Strategy,20000,10,285,1921024
+1,2026-05-24 20:39:15,WALL,Lean Pool Instantiation Strategy,20000,10,220,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,1,1003,2134016
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,1,1504,2134016
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,1,1210,26304512
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,2,992,6131712
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,2,1583,6131712
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,2,2518,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,3,969,9646080
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,3,1483,9641984
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,3,2549,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,4,989,9646080
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,4,1515,9637888
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,4,2499,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,5,1073,9641984
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,5,1581,9641984
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,5,2493,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,6,1102,9666560
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,6,1576,9662464
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,6,2542,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,7,1005,9674752
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,7,1789,9678848
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,7,2578,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,8,1021,9682944
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,8,1668,9687040
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,8,2525,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,9,1021,9719808
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,9,1618,9723904
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,9,2543,0
+1,2026-05-24 21:31:01,WALL,Simple Instantiation Strategy,100000,10,1045,9818112
+1,2026-05-24 21:31:01,WALL,Custom Pooling Instantiation Strategy,100000,10,1789,9814016
+1,2026-05-24 21:31:01,WALL,Lean Pool Instantiation Strategy,100000,10,2544,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,1,52,151552
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,1,77,151552
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,1,58,929792
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,2,49,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,2,74,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,2,50,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,3,49,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,3,75,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,3,47,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,4,51,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,4,76,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,4,50,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,5,47,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,5,75,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,5,47,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,6,50,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,6,80,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,6,48,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,7,51,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,7,89,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,7,49,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,8,52,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,8,76,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,8,48,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,9,50,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,9,81,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,9,50,0
+1,2026-05-24 21:58:39,WALL,Simple Instantiation Strategy,5000,10,48,0
+1,2026-05-24 21:58:39,WALL,Custom Pooling Instantiation Strategy,5000,10,82,0
+1,2026-05-24 21:58:39,WALL,Lean Pool Instantiation Strategy,5000,10,47,0
