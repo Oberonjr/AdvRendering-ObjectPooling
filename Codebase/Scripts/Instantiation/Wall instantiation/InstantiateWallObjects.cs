@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class InstantiateWallObjects : InstantiateObjects
@@ -31,6 +33,38 @@ public class InstantiateWallObjects : InstantiateObjects
 
             Vector3 worldPosition = camera.transform.position + camera.transform.right * localPosition.x + camera.transform.up * localPosition.y + camera.transform.forward * localPosition.z;
             pStrat.Spawn(instantiationPrefab, worldPosition, instantiatedObjects, centerPosition);
+        }
+    }
+
+    public override IEnumerator SpawnStaggered(InstantiationStrategy strat = null)
+    {
+        InstantiationStrategy pStrat = instantiationStrategy;
+        if(strat != null) pStrat = strat;
+        if(instantiatedObjects == null) instantiatedObjects = new System.Collections.Generic.List<GameObject>();
+        float frustumHeight = 2 * instantiationDistance * Mathf.Tan(camera.fieldOfView * 0.5f * Mathf.Deg2Rad);
+        float frustumWidth = frustumHeight * camera.aspect;
+        float cellSizeX = instantiationPrefab.transform.localScale.x * 1.05f;
+        float cellSizeY = instantiationPrefab.transform.localScale.y * 1.05f;
+        int maxCols = Mathf.FloorToInt(frustumWidth / cellSizeX);
+        float originX = -(maxCols * cellSizeX) / 2 + cellSizeX / 2;
+        float originY = frustumHeight / 2 - cellSizeY / 2;
+        float originZ = instantiationDistance;
+        int totalRows = Mathf.CeilToInt((float)repetitionAmount / maxCols);
+        Vector3 localPosition = new Vector3();
+        for (int row = 0; row < totalRows; row++)
+        {
+            yield return null;
+            for (int col = 0; col < maxCols; col++)
+            {
+                int i = row * maxCols + col;
+                if (i >= repetitionAmount) break;
+                
+                localPosition.x = originX + col * cellSizeX;
+                localPosition.y = originY - row * cellSizeY;
+                localPosition.z = originZ;
+                Vector3 worldPosition = camera.transform.position + camera.transform.right * localPosition.x + camera.transform.up * localPosition.y + camera.transform.forward * localPosition.z;
+                pStrat.Spawn(instantiationPrefab, worldPosition, instantiatedObjects, centerPosition);
+            }
         }
     }
 }

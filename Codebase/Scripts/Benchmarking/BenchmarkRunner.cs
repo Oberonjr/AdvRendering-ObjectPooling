@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
+using Unity.Profiling;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class BenchmarkRunner : MonoBehaviour
 {
@@ -11,10 +13,11 @@ public class BenchmarkRunner : MonoBehaviour
     private int runID;
     private string runDateTime;
     private InstantiationType instType;
-    private Stopwatch sw;
-    private long memoryBeginning;
-    private long memoryEnding;
-
+    private long totalGCAlloc;
+    private List<float> frameTimes = new List<float>();
+    private bool isRunning;
+    private bool shouldStart;
+    private ProfilerRecorder profilerRecorder;
 
     public void Awake()
     {
@@ -24,24 +27,40 @@ public class BenchmarkRunner : MonoBehaviour
 
     public void StartBenchmark(BenchmarkStartingEvent e)
     {
-        System.GC.Collect();
-        memoryBeginning = GC.GetTotalMemory(false);
-        sw = Stopwatch.StartNew();
+        shouldStart = true;
+        if(frameTimes == null) frameTimes = new List<float>();
+        frameTimes.Clear();
+        totalGCAlloc = 0;
+        GC.Collect();
+        profilerRecorder = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "GC Allocated In Frame");
         strat = e.strat;
         obj = e.objectCount;
         repetition = e.repetition;
         runID = e.runID;
         runDateTime = e.runDateTime;
+        instType = e.instantiationType;
     }
 
     public void StopBenchmark(BenchmarkEndingEvent e)
     {
-        sw.Stop();
-        memoryEnding = GC.GetTotalMemory(false);
-        WriteCSV(strat, obj, repetition, sw.ElapsedMilliseconds, memoryEnding - memoryBeginning);
+        if(!Application.isPlaying) return;
+        isRunning = false;
+        profilerRecorder.Dispose();
+        if (frameTimes.Count == 0)
+        {
+            return;
+        }
+        float avg = frameTimes.Average();
+        float max = frameTimes.Max();
+        float min = frameTimes.Min();
+        float sumSquareDiffs = 0;
+        foreach (var frameTime in frameTimes) sumSquareDiffs += Mathf.Pow(frameTime - avg, 2);
+        float stdDev = Mathf.Sqrt(sumSquareDiffs / frameTimes.Count);
+        WriteCSV(strat, obj, repetition, frameTimes.Count, avg, max, min, stdDev, totalGCAlloc);
+
     }
 
-    public void WriteCSV(InstantiationStrategy strat, int objectCount, int repetition, long instantiationTime, long GCAllocBytes)
+    public void WriteCSV(InstantiationStrategy strat, int objectCount, int repetition, float frameCount, float avgFrameTimeMs, float maxTimeMs, float  minFloatTimeMs, float stdDevFrameTimeMs, long GCAllocBytes)
     {
         string dir = Application.dataPath + "/../Benchmarks";
         string path = dir + "/results.csv";
@@ -50,10 +69,24 @@ public class BenchmarkRunner : MonoBehaviour
         bool isNew = !System.IO.File.Exists(path);
         if (isNew)
         {
-            System.IO.File.WriteAllText(path, "RunID,RunDateTime,InstantiationType,Strategy,ObjectCount,Repetition,InstantiationTime,GCAllocBytes\n");
+            System.IO.File.WriteAllText(path, "RunID,RunDateTime,InstantiationType,Strategy,ObjectCount,Repetition,FrameCount,AvgFrameTimeMs,MaxFrameTimeMs,MinFrameTimeMs,StdDevFrameTimeMs,GCAllocBytes\n");
         }
 
-        string row = $"{runID},{runDateTime},{instType},{strat.name},{objectCount},{repetition},{instantiationTime},{GCAllocBytes}\n";
+        string row = $"{runID},{runDateTime},{instType},{strat.name},{objectCount},{repetition},{frameCount},{avgFrameTimeMs},{maxTimeMs},{minFloatTimeMs},{stdDevFrameTimeMs},{GCAllocBytes}\n";
         System.IO.File.AppendAllText(path, row);
+    }
+
+    public void Update()
+    {
+        if (shouldStart)
+        {
+            isRunning = true;
+            shouldStart = false;
+        }
+        if (isRunning)
+        {
+            frameTimes.Add(Time.unscaledDeltaTime * 1000f);
+            totalGCAlloc += profilerRecorder.LastValue;
+        }
     }
 }

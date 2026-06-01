@@ -21,6 +21,11 @@ public class SimpleInstantiationEditor : Editor
             instantiatedWallObject.BenchmarkAllStrategies();
         }
         EditorGUILayout.Space();
+        if (GUILayout.Button("Run Staggered Bechmark"))
+        {
+            instantiatedWallObject.BenchmarkAllStrategiesStaggered();
+        }
+        EditorGUILayout.Space();
         if (GUILayout.Button("Despawn"))
         {
             instantiatedWallObject.DestroyPrefabs();

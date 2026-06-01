@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,11 +20,13 @@ public abstract class InstantiateObjects : MonoBehaviour
     protected virtual void Start()
     {
         if(camera == null) camera = Camera.main;
-        instantiationStrategy.Prewarm(repetitionAmount, instantiationPrefab, instantiatedObjects);
+        //instantiationStrategy.Prewarm(repetitionAmount, instantiationPrefab, instantiatedObjects);
     }
 
     public abstract void Spawn(InstantiationStrategy strat = null);
 
+    public abstract IEnumerator SpawnStaggered(InstantiationStrategy strat = null);
+    
     public virtual void DestroyPrefabs()
     {
         instantiationStrategy.DespawnAll(instantiatedObjects);
@@ -37,15 +40,39 @@ public abstract class InstantiateObjects : MonoBehaviour
         {
             foreach (var strategy in instantiationStrategyList.instantiationStrategies)
             {
-                EventBus<BenchmarkStartingEvent>.Publish(new BenchmarkStartingEvent(strategy, i+1, repetitionAmount, runID, runDateTime, instantiationType));
+                EventBus<BenchmarkStartingEvent>.Publish(new BenchmarkStartingEvent(strategy, i+1, repetitionAmount, runID, runDateTime, instantiationType, false));
                 Spawn(strategy);
                 EventBus<BenchmarkEndingEvent>.Publish(new BenchmarkEndingEvent());
                 strategy.DespawnAll(instantiatedObjects);
             }
         }
-        
     }
 
+    public void BenchmarkAllStrategiesStaggered()
+    {
+        StartCoroutine(BenchmarkAllStrategiesStaggeredCoroutine());
+    }
+    public IEnumerator BenchmarkAllStrategiesStaggeredCoroutine()
+    {
+        runID++;
+        string runDateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        
+            foreach (var strategy in instantiationStrategyList.instantiationStrategies)
+            {
+                strategy.Prewarm(repetitionAmount, instantiationPrefab, instantiatedObjects);
+                for (int i = 0; i < benchmarkRepetitions; i++)
+                {
+                    EventBus<BenchmarkStartingEvent>.Publish(new BenchmarkStartingEvent(strategy, i+1, repetitionAmount, runID, runDateTime, instantiationType, true));
+                    yield return StartCoroutine(SpawnStaggered(strategy));
+                    EventBus<BenchmarkEndingEvent>.Publish(new BenchmarkEndingEvent());
+                    strategy.DespawnAll(instantiatedObjects);
+                }
+                foreach(var obj in instantiatedObjects) Destroy(obj);
+                instantiatedObjects.Clear();
+            }
+        
+    }
+    
     public void HardDestroyPrefabs()
     {
         for (int i = centerPosition.childCount - 1; i >= 0; i--)

@@ -20,7 +20,8 @@ public class BenchmarkStartingEvent : Event
     public int runID;
     public string runDateTime;
     public InstantiationType instantiationType;
-    public BenchmarkStartingEvent(InstantiationStrategy pStrat, int pRepetition, int pObjectCount, int pRunID, string pRunDateTime, InstantiationType pInstantiationType)
+    public bool isStaggered;
+    public BenchmarkStartingEvent(InstantiationStrategy pStrat, int pRepetition, int pObjectCount, int pRunID, string pRunDateTime, InstantiationType pInstantiationType, bool pIsStaggered)
     {
         strat = pStrat;
         repetition = pRepetition;
@@ -28,6 +29,7 @@ public class BenchmarkStartingEvent : Event
         runID = pRunID;
         runDateTime = pRunDateTime;
         instantiationType = pInstantiationType;
+        isStaggered = pIsStaggered;
     }
 }
 

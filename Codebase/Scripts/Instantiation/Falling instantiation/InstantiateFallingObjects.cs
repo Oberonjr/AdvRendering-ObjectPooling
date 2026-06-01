@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,6 +57,12 @@ public class InstantiateFallingObjects : InstantiateObjects
         
     }
 
+    public override IEnumerator SpawnStaggered(InstantiationStrategy strat)
+    {
+        Debug.LogWarning("Not implemented for falling objects");
+        yield return null;
+    }
+    
     private void DespawnObject(GameObject obj)
     {
         obj.TryGetComponent(out Rigidbody rb);
